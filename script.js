@@ -1,19 +1,22 @@
-let poses = [];
-let randomPose;
+let pose = [];
 
-async function fetchPoses() {
-    const url = `https://yoga-production-8fa1.up.railway.app/flowfactory/asana`;
+const randomButton = document.getElementById("randomize-btn")
 
-    try {
-        const res = await fetch(url);
-        const resJson = await res.json();
-        poses = resJson
-        randomPose = poses[3]
-        console.log(poses)
-        console.log(randomPose)
-    } catch (error) {
-        console.log(error)
-    }
+function fetchPoses() {
+    let randomNumber = Math.floor(Math.random() * 87);
+
+    const url = `https://yoga-production-8fa1.up.railway.app/flowfactory/asana/random/${randomNumber}`;
+    
+    fetch(url)
+    .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            pose = data
+        })
+        .then(res => window.location.replace('/showPose.html'))
+    .catch(err => console.log(err))  
 }
 
-fetchPoses()
+randomButton.addEventListener('click', () => {
+    fetchPoses()
+})
