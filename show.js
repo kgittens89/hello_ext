@@ -1,4 +1,5 @@
 let pose = null;
+let anotherPoseBtn = document.querySelector('#another-pose-btn')
 
 let tags = {
 	englishNameTag: document.querySelector('.english-name-tag'),
@@ -7,13 +8,10 @@ let tags = {
 	imageTag: document.querySelector('.image-tag'),
 	descriptionTag: document.querySelector('.description-tag'),
 };
-// let englishNameTag = document.querySelector('.english-name-tag');
-// let sanskritNameTag = document.querySelector('.sanskrit-name-tag');
-// let difficultyTag = document.querySelector('difficulty-tag');
-// let imageTag = document.querySelector('image-tag');
-// let descriptionTag = document.querySelector('description-tag');
 
-function fetchPoses() {
+anotherPoseBtn.addEventListener('click', () => fetchPose())
+
+function fetchPose() {
 	let randomNumber = Math.floor(Math.random() * 87);
 
 	// const url = `https://yoga-production-8fa1.up.railway.app/flowfactory/asana/random/${randomNumber}`;
@@ -38,5 +36,5 @@ function updateDocument(pose, tags) {
 }
 
 window.addEventListener('load', () => {
-	fetchPoses();
+	fetchPose();
 });
